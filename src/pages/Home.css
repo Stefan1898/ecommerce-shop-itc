@@ -36,3 +36,54 @@
   color: #fff;
   box-shadow: 0 0 10px #00bcd4;
 }
+
+.home-slider-container {
+  margin-top: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
+}
+
+.home-slider-container img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Departare butoane Home */
+.home-container button + button {
+  margin-left: 1rem;
+}
+
+/* 🔵 Aerisire link-uri navbar global (chiar dacă e definit în alt JSX) */
+nav a {
+  margin: 0 1rem; /* Spațiu stânga-dreapta între link-uri */
+  padding: 0.5rem 1rem; /* Spațiu interior link */
+  text-decoration: none;
+  color: #fff; /* Alb sau altă culoare */
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: rgba(0, 255, 247, 0.2);
+}
+
+/* Dacă folosești Link în loc de button, clasa btn-produse */
+.btn-produse {
+  display: inline-block;
+  background: #00fff7;
+  color: #1f1f1f;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: 0.3s;
+}
+
+.btn-produse:hover {
+  background: #00bcd4;
+  color: #fff;
+  box-shadow: 0 0 10px #00bcd4;
+}
