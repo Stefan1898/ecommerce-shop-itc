@@ -18,7 +18,7 @@ function renderCategorySection(title, category, products, addToCart) {
             <img
               src={produs.image} // ✅ Link direct
               alt={produs.name}
-              className="w-full h-40 object-cover mb-4 rounded"
+              className="w-40 h-40 object-cover mb-4 rounded"
             />
             <h3 className="text-lg font-semibold text-gray-800">{produs.name}</h3>
             <p className="text-green-600 font-bold">{produs.price} RON</p>
