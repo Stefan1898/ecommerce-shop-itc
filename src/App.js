@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Products from "./pages/Products.jsx";
 import Cart from "./pages/Cart.jsx";
-import Navbar from "./components/Navbar.jsx";
 
 function App() {
   return (
