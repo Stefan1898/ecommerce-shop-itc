@@ -1,31 +1,120 @@
-.App {
-  text-align: center;
+/* Reset general */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #e0e0e0;
+  line-height: 1.6;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Navbar - stil dark + tech */
+nav {
+  background: #1f1f1f;
+  color: #00fff7;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+nav a {
+  color: #00fff7;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #00bcd4;
+  text-shadow: 0 0 5px #00bcd4;
+}
+
+/* Container de conținut */
+.container {
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Titluri */
+h2 {
+  color: #00fff7;
+  margin-bottom: 1rem;
+}
+
+/* Liste / produse / coș */
+ul li {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.5rem;
+  border-left: 4px solid #00fff7;
+  transition: 0.3s;
+}
+
+ul li:hover {
+  background-color: rgba(0, 255, 247, 0.1);
+  cursor: pointer;
+}
+
+/* Butoane */
+button {
+  background: #00fff7;
+  color: #1f1f1f;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #00bcd4;
+  color: #fff;
+  box-shadow: 0 0 10px #00bcd4;
+}
+
+/* Efect glow pentru linkuri */
+a,
+button {
+  font-family: "Inter", sans-serif;
+}
+
+/* Efect special pentru App-header */
 .App-header {
-  background-color: #282c34;
+  background: transparent;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+}
+
+/* Animația veche de logo dacă vrei să o păstrezi */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  animation: App-logo-spin infinite 20s linear;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #00fff7;
 }
 
 @keyframes App-logo-spin {
