@@ -8,20 +8,7 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Acasă</Link>
-            </li>
-            <li>
-              <Link to="/products">Produse</Link>
-            </li>
-            <li>
-              <Link to="/cart">Coș</Link>
-            </li>
-          </ul>
-        </nav>
-
+        <Navbar /> {/* Afișează componenta Navbar */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
