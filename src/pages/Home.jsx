@@ -3,18 +3,21 @@ import Slider from 'react-slick';
 import './Home.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import iphoneImg from "../assets/iphone14pro.jpg";
+import asusImg from "../assets/laptop-asus.jpg";
+import galaxyWatchImg from  "../assets/galaxy-watch5.jpg";
 
 const imaginiProduse = [
   {
-    src: "../assets/iphone14pro.jpg",
+    src: iphoneImg,
     alt: "Produs 1"
   },
   {
-    src: "../assets/laptop-asus.jpg",
+    src: asusImg,
     alt: "Produs 2"
   },
   {
-    src: "../assets/galaxy-watch5.jpg",
+    src: galaxyWatchImg,
     alt: "Produs 3"
   }
 ];
