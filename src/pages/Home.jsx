@@ -6,15 +6,15 @@ import "slick-carousel/slick/slick-theme.css";
 
 const imaginiProduse = [
   {
-    src: "https://via.placeholder.com/800x400/00fff7/000000?text=Produs+1",
+    src: "../assets/iphone14pro.jpg",
     alt: "Produs 1"
   },
   {
-    src: "https://via.placeholder.com/800x400/00bcd4/ffffff?text=Produs+2",
+    src: "../assets/laptop-asus.jpg",
     alt: "Produs 2"
   },
   {
-    src: "https://via.placeholder.com/800x400/008080/ffffff?text=Produs+3",
+    src: "../assets/galaxy-watch5.jpg",
     alt: "Produs 3"
   }
 ];
