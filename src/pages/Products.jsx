@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Products.css';
 import { CartContext } from '../CartContext';
-import products from '../data/products'; // ✅ Importă datele
+import { fetchProducts } from '../firestore'; // 🔥 Importă funcția din firestore.js
 
 function renderCategorySection(title, category, products, addToCart) {
   const filtered = products.filter(p => p.category === category);
@@ -15,13 +15,17 @@ function renderCategorySection(title, category, products, addToCart) {
             key={produs.id}
             className="border rounded shadow p-4 bg-white hover:shadow-lg transition"
           >
-           <img
-  src={produs.image}
-  alt={produs.name}
-  style={{ width: "160px", height: "160px", objectFit: "cover", borderRadius: "8px" }}
-  className="mb-4"
-/>
-
+            <img
+              src={produs.image}
+              alt={produs.name}
+              style={{
+                width: "160px",
+                height: "160px",
+                objectFit: "cover",
+                borderRadius: "8px"
+              }}
+              className="mb-4"
+            />
             <h3 className="text-lg font-semibold text-gray-800">{produs.name}</h3>
             <p className="text-green-600 font-bold">{produs.price} RON</p>
             <button
@@ -39,6 +43,15 @@ function renderCategorySection(title, category, products, addToCart) {
 
 function Products() {
   const { addToCart } = useContext(CartContext);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      const data = await fetchProducts();
+      setProducts(data);
+    };
+    load();
+  }, []);
 
   return (
     <div className="p-6">
@@ -52,3 +65,5 @@ function Products() {
 }
 
 export default Products;
+
+
