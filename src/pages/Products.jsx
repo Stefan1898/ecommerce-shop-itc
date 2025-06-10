@@ -1,10 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Products.css';
 import { CartContext } from '../CartContext';
-import { fetchProducts } from '../firestore'; // 🔥 Importă funcția din firestore.js
+
+const fetchProducts = async () => {
+  const response = await fetch("http://localhost:3000/api/products");
+  const data = await response.json();
+  return data;
+};
+
 
 function renderCategorySection(title, category, products, addToCart) {
   const filtered = products.filter(p => p.category === category);
+
+  if (filtered.length === 0) return null;
 
   return (
     <div key={category} className="mb-8">
@@ -27,7 +35,9 @@ function renderCategorySection(title, category, products, addToCart) {
               className="mb-4"
             />
             <h3 className="text-lg font-semibold text-gray-800">{produs.name}</h3>
-            <p className="text-green-600 font-bold">{produs.price} RON</p>
+            <p className="text-green-600 font-bold">
+              {typeof produs.price === "number" ? `${produs.price} RON` : "Preț indisponibil"}
+            </p>
             <button
               onClick={() => addToCart(produs)}
               className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
@@ -65,5 +75,3 @@ function Products() {
 }
 
 export default Products;
-
-

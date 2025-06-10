@@ -3,22 +3,19 @@ import Slider from 'react-slick';
 import './Home.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import iphoneImg from "../assets/iphone14pro.jpg";
-import asusImg from "../assets/laptop-asus.jpg";
-import galaxyWatchImg from  "../assets/galaxy-watch5.jpg";
 
 const imaginiProduse = [
   {
-    src: iphoneImg,
-    alt: "Produs 1"
+    src: "https://via.placeholder.com/800x400/111111/ffffff?text=iPhone+14+Pro",
+    alt: "iPhone 14 Pro"
   },
   {
-    src: asusImg,
-    alt: "Produs 2"
+    src: "https://via.placeholder.com/800x400/222222/ffffff?text=ASUS+ROG+Laptop",
+    alt: "Laptop ASUS ROG"
   },
   {
-    src: galaxyWatchImg,
-    alt: "Produs 3"
+    src: "https://via.placeholder.com/800x400/333333/ffffff?text=Galaxy+Watch+5",
+    alt: "Samsung Galaxy Watch 5"
   }
 ];
 
