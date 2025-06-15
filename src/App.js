@@ -1,7 +1,12 @@
 // src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
+import React, { useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { AuthProvider, AuthContext } from "./AuthContext";
 import { CartProvider } from "./CartContext";
 import { ThemeProvider } from "./ThemeContext";
 
@@ -10,6 +15,16 @@ import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import AdminPage from "./pages/AdminPage"; // ✅ Import pagină admin
+
+// Emailul administratorului
+const AdminEmail = "n_stefan18@yahoo.com";
+
+// Rută protejată pentru admin
+function AdminRoute({ children }) {
+  const { user } = useContext(AuthContext);
+  return user?.email === AdminEmail ? children : <Navigate to="/" />;
+}
 
 function App() {
   return (
@@ -31,6 +46,14 @@ function App() {
               <Route path="/cos" element={<Cart />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
+              <Route
+                path="/admin"
+                element={
+                  <AdminRoute>
+                    <AdminPage />
+                  </AdminRoute>
+                }
+              />
             </Routes>
           </Router>
         </ThemeProvider>

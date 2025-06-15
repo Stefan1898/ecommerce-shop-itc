@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import { ThemeContext } from "../ThemeContext";
 
+const AdminEmail = "n_stefan18@yahoo.com";
+
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const { darkMode, toggleTheme } = useContext(ThemeContext);
@@ -34,6 +36,7 @@ function Navbar() {
         <Link to="/cos">Coș</Link>
         {!user && <Link to="/register">Înregistrare</Link>}
         {!user && <Link to="/login">Autentificare</Link>}
+        {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -42,9 +45,7 @@ function Navbar() {
         </button>
         {user && (
           <>
-            <span style={{ fontWeight: "bold" }}>
-              {user.email}
-            </span>
+            <span style={{ fontWeight: "bold" }}>{user.email}</span>
             <button onClick={handleLogout}>Logout</button>
           </>
         )}
@@ -54,4 +55,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
