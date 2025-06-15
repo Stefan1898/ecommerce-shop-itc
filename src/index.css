@@ -1,0 +1,40 @@
+/* Stil global */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0.5rem 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Optional: Dark mode pentru butoane */
+body.dark-mode button {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+body.dark-mode a {
+  color: #93c5fd;
+}

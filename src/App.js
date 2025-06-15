@@ -1,45 +1,41 @@
+// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./AuthContext";
+import { CartProvider } from "./CartContext";
+import { ThemeProvider } from "./ThemeContext";
+
+import Navbar from "./components/Navbar";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
-import { CartProvider } from "./CartContext";
-import Navbar from "./components/Navbar";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <h1 style={{ textAlign: "center", marginTop: "2rem" }}>
-                Bine ai venit la ITC Shop
-              </h1>
-            }
-          />
-          <Route path="/products" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/register"
-            element={
-              <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
-                Înregistrare
-              </h2>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
-                Autentificare
-              </h2>
-            }
-          />
-        </Routes>
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <ThemeProvider>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <h2 style={{ textAlign: "center" }}>
+                    Bine ai venit la ITC Shop
+                  </h2>
+                }
+              />
+              <Route path="/produse" element={<Products />} />
+              <Route path="/cos" element={<Cart />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </Router>
+        </ThemeProvider>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

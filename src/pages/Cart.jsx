@@ -1,27 +1,32 @@
 import React, { useContext } from "react";
 import { CartContext } from "../CartContext";
+import "./Cart.css";
 
 function Cart() {
-  const { cartItems, addToCart, removeFromCart, decrementQuantity, clearCart } = useContext(CartContext);
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const { cartItems, removeFromCart } = useContext(CartContext);
+
+  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 
   return (
-    <div className="p-6">
-      <h2>Coșul de cumpărături</h2>
+    <div className="cart-container">
+      <h2 className="cart-title">🛒 Coșul tău de cumpărături</h2>
+
       {cartItems.length === 0 ? (
-        <p>Coșul este gol.</p>
+        <p className="empty-cart">Coșul este gol.</p>
       ) : (
         <>
-          {cartItems.map((item) => (
-            <div key={item.id}>
-              <p>{item.name} x {item.quantity}</p>
-              <button onClick={() => decrementQuantity(item.id)}>-</button>
-              <button onClick={() => addToCart(item)}>+</button>
-              <button onClick={() => removeFromCart(item.id)}>Șterge</button>
-            </div>
-          ))}
-          <p>Total: {total} RON</p>
-          <button onClick={clearCart}>Golește coșul</button>
+          <ul className="cart-list">
+            {cartItems.map((item, index) => (
+              <li key={index} className="cart-item">
+                <span>{item.name}</span>
+                <span>{item.price} RON</span>
+                <button onClick={() => removeFromCart(item.id)}>Șterge</button>
+              </li>
+            ))}
+          </ul>
+          <div className="cart-total">
+            <strong>Total:</strong> {total} RON
+          </div>
         </>
       )}
     </div>

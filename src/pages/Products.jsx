@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import "./Products.css";
 import { CartContext } from "../CartContext";
 import { fetchProducts } from "../fetchProducts";
 
@@ -15,14 +16,14 @@ function Products() {
   }, []);
 
   return (
-    <div className="p-6">
-      <h2>Produse</h2>
-      <div>
+    <div className="products-container">
+      <h2 className="section-title">📦 Produse disponibile</h2>
+      <div className="product-grid">
         {products.map((produs) => (
-          <div key={produs.id}>
-            <img src={produs.image} alt={produs.name} width="100" />
-            <p>{produs.name}</p>
-            <p>{produs.price} RON</p>
+          <div key={produs.id} className="product-card">
+            <img src={produs.image} alt={produs.name} />
+            <h3>{produs.name}</h3>
+            <p className="price">{produs.price} RON</p>
             <button onClick={() => addToCart(produs)}>Adaugă în coș</button>
           </div>
         ))}
