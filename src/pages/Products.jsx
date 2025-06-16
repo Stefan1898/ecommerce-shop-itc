@@ -1,18 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Products.css";
 import { CartContext } from "../CartContext";
-import { fetchProducts } from "../fetchProducts";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 function Products() {
   const { addToCart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const load = async () => {
-      const data = await fetchProducts();
-      setProducts(data);
+    const loadProducts = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "products"));
+        const loaded = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(loaded);
+      } catch (error) {
+        console.error("Eroare la încărcarea produselor din Firestore:", error);
+      }
     };
-    load();
+    loadProducts();
   }, []);
 
   return (
@@ -33,3 +39,4 @@ function Products() {
 }
 
 export default Products;
+

@@ -1,6 +1,13 @@
 // src/pages/AdminPage.jsx
 import React, { useEffect, useState } from "react";
-import { fetchProducts } from "../fetchProducts";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 function AdminPage() {
   const [products, setProducts] = useState([]);
@@ -11,11 +18,15 @@ function AdminPage() {
     image: "",
   });
 
+  const productsRef = collection(db, "products");
+
+  const loadProducts = async () => {
+    const snapshot = await getDocs(productsRef);
+    const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    setProducts(data);
+  };
+
   useEffect(() => {
-    const loadProducts = async () => {
-      const data = await fetchProducts();
-      setProducts(data);
-    };
     loadProducts();
   }, []);
 
@@ -23,14 +34,28 @@ function AdminPage() {
     setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
   };
 
-  const handleAddProduct = () => {
-    const updated = [...products, { ...newProduct, id: Date.now() }];
-    setProducts(updated);
-    setNewProduct({ name: "", price: "", category: "", image: "" });
+  const handleAddProduct = async () => {
+    try {
+      await addDoc(productsRef, {
+        name: newProduct.name,
+        price: Number(newProduct.price),
+        category: newProduct.category,
+        image: newProduct.image,
+      });
+      setNewProduct({ name: "", price: "", category: "", image: "" });
+      loadProducts();
+    } catch (error) {
+      console.error("Eroare la adăugarea produsului:", error);
+    }
   };
 
-  const handleDelete = (id) => {
-    setProducts(products.filter((p) => p.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await deleteDoc(doc(db, "products", id));
+      loadProducts();
+    } catch (error) {
+      console.error("Eroare la ștergerea produsului:", error);
+    }
   };
 
   return (
