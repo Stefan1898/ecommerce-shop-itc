@@ -10,16 +10,16 @@ const AdminEmail = "n_stefan18@yahoo.com";
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const { darkMode, toggleTheme } = useContext(ThemeContext);
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await logout();
     navigate("/login");
   };
 
-  const changeLanguage = (e) => {
-    i18n.changeLanguage(e.target.value);
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
   };
 
   return (
@@ -35,9 +35,7 @@ function Navbar() {
       }}
     >
       <div style={{ display: "flex", gap: "20px" }}>
-        <Link to="/" style={{ fontWeight: "bold" }}>
-          {t("welcome")}
-        </Link>
+        <Link to="/" style={{ fontWeight: "bold" }}>{t("welcome")}</Link>
         <Link to="/produse">{t("products")}</Link>
         <Link to="/cos">Coș</Link>
         {!user && <Link to="/register">{t("register")}</Link>}
@@ -46,14 +44,16 @@ function Navbar() {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <select onChange={changeLanguage} value={i18n.language}>
+        <select onChange={(e) => changeLanguage(e.target.value)} defaultValue={i18n.language}>
           <option value="ro">RO</option>
           <option value="en">EN</option>
           <option value="fr">FR</option>
         </select>
+
         <button onClick={toggleTheme}>
           {darkMode ? "☀️ Light" : "🌙 Dark"}
         </button>
+
         {user && (
           <>
             <span style={{ fontWeight: "bold" }}>{user.email}</span>
