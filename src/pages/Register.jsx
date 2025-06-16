@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 import { auth } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./Auth.css";
 
 function Register() {
@@ -15,6 +18,7 @@ function Register() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,26 +28,41 @@ function Register() {
     e.preventDefault();
 
     if (form.password !== form.confirmPassword) {
-      return setError("Parolele nu coincid.");
+      return setError(t("error.passwordsDontMatch"));
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, form.email, form.password);
-      // Poți salva fullName, address, phone în Firestore aici dacă vrei.
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
+
+      const user = userCredential.user;
+
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        email: form.email,
+        fullName: form.fullName,
+        address: form.address,
+        phone: form.phone,
+        role: "user"
+      });
+
       navigate("/login");
     } catch (err) {
-      setError("Eroare la înregistrare: " + err.message);
+      setError(t("error.register") + ": " + err.message);
     }
   };
 
   return (
     <div className="auth-container">
-      <h2>Înregistrare</h2>
+      <h2>{t("register.title")}</h2>
       <form onSubmit={handleSubmit} className="auth-form">
         <input
           type="text"
           name="fullName"
-          placeholder="Nume complet"
+          placeholder={t("register.fullName")}
           value={form.fullName}
           onChange={handleChange}
           required
@@ -51,7 +70,7 @@ function Register() {
         <input
           type="text"
           name="address"
-          placeholder="Adresă"
+          placeholder={t("register.address")}
           value={form.address}
           onChange={handleChange}
           required
@@ -59,14 +78,14 @@ function Register() {
         <input
           type="text"
           name="phone"
-          placeholder="Telefon (opțional)"
+          placeholder={t("register.phone")}
           value={form.phone}
           onChange={handleChange}
         />
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder={t("register.email")}
           value={form.email}
           onChange={handleChange}
           required
@@ -74,7 +93,7 @@ function Register() {
         <input
           type="password"
           name="password"
-          placeholder="Parolă"
+          placeholder={t("register.password")}
           value={form.password}
           onChange={handleChange}
           required
@@ -82,13 +101,13 @@ function Register() {
         <input
           type="password"
           name="confirmPassword"
-          placeholder="Confirmă parola"
+          placeholder={t("register.confirmPassword")}
           value={form.confirmPassword}
           onChange={handleChange}
           required
         />
         {error && <p className="auth-error">{error}</p>}
-        <button type="submit">Creează cont</button>
+        <button type="submit">{t("register.submit")}</button>
       </form>
     </div>
   );

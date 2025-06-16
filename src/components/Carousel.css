@@ -1,0 +1,15 @@
+/* src/components/Carousel.css */
+.carousel {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  margin: 0 auto 2rem auto;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}

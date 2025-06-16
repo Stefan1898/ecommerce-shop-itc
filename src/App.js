@@ -15,12 +15,11 @@ import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import AdminPage from "./pages/AdminPage"; // ✅ Import pagină admin
+import AdminPage from "./pages/AdminPage";
+import Home from "./pages/Home"; // ✅ Nou: import Home
 
-// Emailul administratorului
 const AdminEmail = "n_stefan18@yahoo.com";
 
-// Rută protejată pentru admin
 function AdminRoute({ children }) {
   const { user } = useContext(AuthContext);
   return user?.email === AdminEmail ? children : <Navigate to="/" />;
@@ -34,14 +33,7 @@ function App() {
           <Router>
             <Navbar />
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <h2 style={{ textAlign: "center" }}>
-                    Bine ai venit la ITC Shop
-                  </h2>
-                }
-              />
+              <Route path="/" element={<Home />} /> {/* ✅ Înlocuit cu Home */}
               <Route path="/produse" element={<Products />} />
               <Route path="/cos" element={<Cart />} />
               <Route path="/register" element={<Register />} />

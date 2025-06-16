@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import { ThemeContext } from "../ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const AdminEmail = "n_stefan18@yahoo.com";
 
@@ -10,10 +11,15 @@ function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const handleLogout = async () => {
     await logout();
     navigate("/login");
+  };
+
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
   };
 
   return (
@@ -30,16 +36,21 @@ function Navbar() {
     >
       <div style={{ display: "flex", gap: "20px" }}>
         <Link to="/" style={{ fontWeight: "bold" }}>
-          Acasă
+          {t("welcome")}
         </Link>
-        <Link to="/produse">Produse</Link>
+        <Link to="/produse">{t("products")}</Link>
         <Link to="/cos">Coș</Link>
-        {!user && <Link to="/register">Înregistrare</Link>}
-        {!user && <Link to="/login">Autentificare</Link>}
+        {!user && <Link to="/register">{t("register")}</Link>}
+        {!user && <Link to="/login">{t("login")}</Link>}
         {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <select onChange={changeLanguage} value={i18n.language}>
+          <option value="ro">RO</option>
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+        </select>
         <button onClick={toggleTheme}>
           {darkMode ? "☀️ Light" : "🌙 Dark"}
         </button>
