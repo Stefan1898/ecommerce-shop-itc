@@ -17,6 +17,8 @@ function Home() {
         const featured = all.slice(0, 5); // primele 5 produse
         console.log("🔍 Produse pentru carusel:", featured); // <- adăugat
         setCarouselItems(featured);
+        console.log("Produse extrase pentru carusel:", featured);
+
       } catch (error) {
         console.error("Eroare la încărcarea produselor pentru carusel:", error);
       }
