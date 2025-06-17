@@ -38,8 +38,8 @@ function Navbar() {
         <Link to="/" style={{ fontWeight: "bold" }}>{t("welcome")}</Link>
         <Link to="/produse">{t("products")}</Link>
         <Link to="/cos">Coș</Link>
-        {!user && <Link to="/register">{t("register")}</Link>}
-        {!user && <Link to="/login">{t("login")}</Link>}
+        {!user && <Link to="/register">{t("register.title")}</Link>}
+        {!user && <Link to="/login">{t("login.title")}</Link>}
         {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
       </div>
 
