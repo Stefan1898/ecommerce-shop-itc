@@ -1,3 +1,4 @@
+// src/i18n.js
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
@@ -7,6 +8,9 @@ const resources = {
     translation: {
       welcome: "Bine ai venit la IT&C Shop",
       products: "Produse disponibile",
+      addToCart: "Adaugă în coș",
+      noPrice: "Preț indisponibil",
+      noCategory: "Fără categorie",
       login: {
         title: "Autentificare",
         emailPlaceholder: "ex: email@exemplu.com",
@@ -42,6 +46,9 @@ const resources = {
     translation: {
       welcome: "Welcome to IT&C Shop",
       products: "Available Products",
+      addToCart: "Add to cart",
+      noPrice: "Price not available",
+      noCategory: "Uncategorized",
       login: {
         title: "Login",
         emailPlaceholder: "e.g. email@example.com",
@@ -76,6 +83,9 @@ const resources = {
     translation: {
       welcome: "Bienvenue chez IT&C Shop",
       products: "Produits disponibles",
+      addToCart: "Ajouter au panier",
+      noPrice: "Prix non disponible",
+      noCategory: "Sans catégorie",
       login: {
         title: "Connexion",
         emailPlaceholder: "ex : email@exemple.com",
