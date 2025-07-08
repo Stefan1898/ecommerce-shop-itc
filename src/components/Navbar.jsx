@@ -1,17 +1,44 @@
-// src/components/Navbar.jsx
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// src/components/Navbar.jsx (actualizat cu bara de căutare și select categorii)
+
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import { ThemeContext } from "../ThemeContext";
 import { useTranslation } from "react-i18next";
+import { db } from "../firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
 
 const AdminEmail = "n_stefan18@yahoo.com";
 
-function Navbar() {
+function Navbar({ onSearch, onCategoryChange }) {
   const { user, logout } = useContext(AuthContext);
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [categories, setCategories] = useState(["all"]);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      const snapshot = await getDocs(collection(db, "products"));
+      const cats = [
+        ...new Set(snapshot.docs.map((doc) => doc.data().category || t("noCategory"))),
+      ];
+      setCategories(["all", ...cats]);
+    };
+    loadCategories();
+  }, [t]);
+
+  useEffect(() => {
+    onSearch && onSearch(searchTerm);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    onCategoryChange && onCategoryChange(selectedCategory);
+  }, [selectedCategory]);
 
   const handleLogout = async () => {
     await logout();
@@ -22,6 +49,8 @@ function Navbar() {
     i18n.changeLanguage(lng);
   };
 
+  const isProductPage = location.pathname.includes("produse");
+
   return (
     <nav
       style={{
@@ -29,12 +58,13 @@ function Navbar() {
         color: darkMode ? "#fff" : "#111",
         padding: "12px 24px",
         display: "flex",
+        flexWrap: "wrap",
         justifyContent: "space-between",
         alignItems: "center",
         boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
       }}
     >
-      <div style={{ display: "flex", gap: "20px" }}>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <Link to="/" style={{ fontWeight: "bold" }}>{t("welcome")}</Link>
         <Link to="/produse">{t("products")}</Link>
         <Link to="/cos">{t("cart.title")}</Link>
@@ -42,6 +72,27 @@ function Navbar() {
         {!user && <Link to="/login">{t("login.title")}</Link>}
         {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
       </div>
+
+      {isProductPage && (
+        <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
+          <input
+            type="text"
+            placeholder="🔍 Caută produse..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{ padding: "6px", borderRadius: "6px" }}
+          />
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            style={{ padding: "6px", borderRadius: "6px" }}
+          >
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <select onChange={(e) => changeLanguage(e.target.value)} defaultValue={i18n.language}>

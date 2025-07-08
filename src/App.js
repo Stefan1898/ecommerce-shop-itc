@@ -1,5 +1,4 @@
-// src/App.js
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,7 +15,7 @@ import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AdminPage from "./pages/AdminPage";
-import Home from "./pages/Home"; // ✅ Nou: import Home
+import Home from "./pages/Home";
 
 const AdminEmail = "n_stefan18@yahoo.com";
 
@@ -26,15 +25,30 @@ function AdminRoute({ children }) {
 }
 
 function App() {
+  // 🟡 NOU: stări pentru filtrare produse
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   return (
     <AuthProvider>
       <CartProvider>
         <ThemeProvider>
           <Router>
-            <Navbar />
+            <Navbar
+              onSearch={setSearchTerm}
+              onCategoryChange={setSelectedCategory}
+            />
             <Routes>
-              <Route path="/" element={<Home />} /> {/* ✅ Înlocuit cu Home */}
-              <Route path="/produse" element={<Products />} />
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/produse"
+                element={
+                  <Products
+                    searchTerm={searchTerm}
+                    selectedCategory={selectedCategory}
+                  />
+                }
+              />
               <Route path="/cos" element={<Cart />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
