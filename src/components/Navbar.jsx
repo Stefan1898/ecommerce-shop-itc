@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx (actualizat cu bara de căutare și select categorii)
+// src/components/Navbar.jsx
 
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -19,15 +19,15 @@ function Navbar({ onSearch, onCategoryChange }) {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [categories, setCategories] = useState(["all"]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const loadCategories = async () => {
       const snapshot = await getDocs(collection(db, "products"));
-      const cats = [
+      const unique = [
         ...new Set(snapshot.docs.map((doc) => doc.data().category || t("noCategory"))),
       ];
-      setCategories(["all", ...cats]);
+      setCategories(unique);
     };
     loadCategories();
   }, [t]);
@@ -77,7 +77,7 @@ function Navbar({ onSearch, onCategoryChange }) {
         <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
           <input
             type="text"
-            placeholder="🔍 Caută produse..."
+            placeholder={t("searchPlaceholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{ padding: "6px", borderRadius: "6px" }}
@@ -87,8 +87,13 @@ function Navbar({ onSearch, onCategoryChange }) {
             onChange={(e) => setSelectedCategory(e.target.value)}
             style={{ padding: "6px", borderRadius: "6px" }}
           >
+            <option value="all">{t("selectCategory")}</option>
             {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
+              <option key={cat} value={cat}>
+                {cat === "Fără categorie" || cat === "Uncategorized" || cat === "Sans catégorie"
+                  ? t("noCategory")
+                  : cat}
+              </option>
             ))}
           </select>
         </div>

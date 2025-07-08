@@ -1,4 +1,3 @@
-// src/i18n.js
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
@@ -11,6 +10,8 @@ const resources = {
       addToCart: "Adaugă în coș",
       noPrice: "Preț indisponibil",
       noCategory: "Fără categorie",
+      searchPlaceholder: "Caută produse...",
+      selectCategory: "Toate categoriile",
       login: {
         title: "Autentificare",
         emailPlaceholder: "ex: email@exemplu.com",
@@ -49,6 +50,8 @@ const resources = {
       addToCart: "Add to cart",
       noPrice: "Price not available",
       noCategory: "Uncategorized",
+      searchPlaceholder: "Search products...",
+      selectCategory: "All categories",
       login: {
         title: "Login",
         emailPlaceholder: "e.g. email@example.com",
@@ -86,6 +89,8 @@ const resources = {
       addToCart: "Ajouter au panier",
       noPrice: "Prix non disponible",
       noCategory: "Sans catégorie",
+      searchPlaceholder: "Rechercher des produits...",
+      selectCategory: "Toutes les catégories",
       login: {
         title: "Connexion",
         emailPlaceholder: "ex : email@exemple.com",
