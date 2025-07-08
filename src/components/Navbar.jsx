@@ -37,7 +37,7 @@ function Navbar() {
       <div style={{ display: "flex", gap: "20px" }}>
         <Link to="/" style={{ fontWeight: "bold" }}>{t("welcome")}</Link>
         <Link to="/produse">{t("products")}</Link>
-        <Link to="/cos">Coș</Link>
+        <Link to="/cos">{t("cart.title")}</Link>
         {!user && <Link to="/register">{t("register.title")}</Link>}
         {!user && <Link to="/login">{t("login.title")}</Link>}
         {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
@@ -57,7 +57,7 @@ function Navbar() {
         {user && (
           <>
             <span style={{ fontWeight: "bold" }}>{user.email}</span>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout}>{t("logout")}</button>
           </>
         )}
       </div>
