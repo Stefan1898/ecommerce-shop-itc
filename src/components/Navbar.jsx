@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx (actualizat complet pentru traducerea categoriilor)
+// src/components/Navbar.jsx
 
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -33,11 +33,11 @@ function Navbar({ onSearch, onCategoryChange }) {
   }, []);
 
   useEffect(() => {
-    onSearch && onSearch(searchTerm);
+    onSearch?.(searchTerm);
   }, [searchTerm]);
 
   useEffect(() => {
-    onCategoryChange && onCategoryChange(selectedCategory);
+    onCategoryChange?.(selectedCategory);
   }, [selectedCategory]);
 
   const handleLogout = async () => {
@@ -54,7 +54,10 @@ function Navbar({ onSearch, onCategoryChange }) {
   const getTranslatedCategory = (cat) => {
     if (cat === "all") return t("selectCategory");
     if (cat.toLowerCase() === "uncategorized") return t("noCategory");
-    return t(`categories.${cat}`) || cat;
+    
+    // Evită prefixul vizibil „categories.” dacă nu există traducere
+    const translated = t(`categories.${cat}`, { defaultValue: cat });
+    return translated;
   };
 
   return (
