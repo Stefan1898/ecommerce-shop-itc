@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx
+// src/components/Navbar.jsx (actualizat complet pentru traducerea categoriilor)
 
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -25,12 +25,12 @@ function Navbar({ onSearch, onCategoryChange }) {
     const loadCategories = async () => {
       const snapshot = await getDocs(collection(db, "products"));
       const unique = [
-        ...new Set(snapshot.docs.map((doc) => doc.data().category || t("noCategory"))),
+        ...new Set(snapshot.docs.map((doc) => doc.data().category || "uncategorized")),
       ];
       setCategories(unique);
     };
     loadCategories();
-  }, [t]);
+  }, []);
 
   useEffect(() => {
     onSearch && onSearch(searchTerm);
@@ -50,6 +50,12 @@ function Navbar({ onSearch, onCategoryChange }) {
   };
 
   const isProductPage = location.pathname.includes("produse");
+
+  const getTranslatedCategory = (cat) => {
+    if (cat === "all") return t("selectCategory");
+    if (cat.toLowerCase() === "uncategorized") return t("noCategory");
+    return t(`categories.${cat}`) || cat;
+  };
 
   return (
     <nav
@@ -90,9 +96,7 @@ function Navbar({ onSearch, onCategoryChange }) {
             <option value="all">{t("selectCategory")}</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
-                {cat === "Fără categorie" || cat === "Uncategorized" || cat === "Sans catégorie"
-                  ? t("noCategory")
-                  : cat}
+                {getTranslatedCategory(cat)}
               </option>
             ))}
           </select>
