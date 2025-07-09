@@ -104,7 +104,10 @@ function Login() {
       </form>
 
       <p style={{ marginTop: "1rem", textAlign: "center" }}>
-        {t("login.noAccount")} <Link to="/register">{t("login.registerNow")}</Link>
+        {t("login.noAccount")}{" "}
+        <Link to="/register" style={{ color: "#007bff", textDecoration: "underline" }}>
+          {t("login.registerNow")}
+        </Link>
       </p>
     </div>
   );

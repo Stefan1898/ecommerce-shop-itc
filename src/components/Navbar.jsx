@@ -1,5 +1,3 @@
-// src/components/Navbar.jsx
-
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
@@ -7,7 +5,7 @@ import { ThemeContext } from "../ThemeContext";
 import { useTranslation } from "react-i18next";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
-import { ShoppingCart, User } from "lucide-react"; // Iconițe
+import { ShoppingCart, User, Home, Box } from "lucide-react"; // iconițe
 
 const AdminEmail = "n_stefan18@yahoo.com";
 
@@ -93,14 +91,20 @@ function Navbar({ onSearch, onCategoryChange }) {
       }}
     >
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "center" }}>
-        <Link to="/" style={{ fontWeight: "bold" }}>{t("welcome")}</Link>
-        <Link to="/produse">{t("products")}</Link>
-        <Link to="/cos" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <ShoppingCart size={18} />
+        <Link to="/" style={{ fontWeight: "bold", display: "flex", alignItems: "center", gap: "4px" }}>
+          <Home size={18} /> Acasă
         </Link>
-        {!user && <Link to="/register">{t("register.title")}</Link>}
-        {!user && <Link to="/login" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <User size={18} /> {t("login.title")}</Link>}
+        <Link to="/produse" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <Box size={18} /> {t("products")}
+        </Link>
+        <Link to="/cos" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <ShoppingCart size={18} /> Coș
+        </Link>
+        {!user && (
+          <Link to="/login" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+            <User size={18} /> {t("login.title")}
+          </Link>
+        )}
         {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
       </div>
 

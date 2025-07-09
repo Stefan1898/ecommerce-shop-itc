@@ -5,6 +5,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   ro: {
     translation: {
+      home: "Acasă",
       welcome: "Bine ai venit la IT&C Shop",
       products: "Produse disponibile",
       addToCart: "Adaugă în coș",
@@ -41,6 +42,7 @@ const resources = {
         confirmPassword: "Confirmă parola",
         submit: "Creează cont",
         google: "Înregistrare cu contul Google",
+        haveAccount: "Ai deja un cont?",
       },
       cart: {
         title: "Coșul tău de cumpărături",
@@ -64,6 +66,7 @@ const resources = {
   },
   en: {
     translation: {
+      home: "Home",
       welcome: "Welcome to IT&C Shop",
       products: "Available Products",
       addToCart: "Add to cart",
@@ -100,6 +103,7 @@ const resources = {
         confirmPassword: "Confirm Password",
         submit: "Create account",
         google: "Register with Google account",
+        haveAccount: "Already have an account?",
       },
       cart: {
         title: "Your Shopping Cart",
@@ -122,6 +126,7 @@ const resources = {
   },
   fr: {
     translation: {
+      home: "Accueil",
       welcome: "Bienvenue chez IT&C Shop",
       products: "Produits disponibles",
       addToCart: "Ajouter au panier",
@@ -158,6 +163,7 @@ const resources = {
         confirmPassword: "Confirmer le mot de passe",
         submit: "Créer un compte",
         google: "Inscription avec le compte Google",
+        haveAccount: "Vous avez déjà un compte ?",
       },
       cart: {
         title: "Votre panier",

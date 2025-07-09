@@ -150,7 +150,10 @@ function Register() {
       </form>
 
       <p style={{ marginTop: "1rem", textAlign: "center" }}>
-        {t("register.haveAccount")} <Link to="/login">{t("login.title")}</Link>
+        {t("register.haveAccount")}{" "}
+        <Link to="/login" style={{ color: "#007bff", textDecoration: "underline" }}>
+          {t("login.title")}
+        </Link>
       </p>
     </div>
   );
