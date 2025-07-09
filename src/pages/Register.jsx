@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -8,6 +8,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ThemeContext } from "../ThemeContext"; // ⬅️ Adăugat
 import "./Auth.css";
 
 function Register() {
@@ -22,6 +23,7 @@ function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { darkMode } = useContext(ThemeContext); // ⬅️ Obținem darkMode
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -81,7 +83,13 @@ function Register() {
   };
 
   return (
-    <div className="auth-container">
+    <div
+      className="auth-container"
+      style={{
+        backgroundColor: darkMode ? "#1e293b" : "#f7f9fc",
+        color: darkMode ? "#fff" : "#000",
+      }}
+    >
       <h2>{t("register.title")}</h2>
       <form onSubmit={handleSubmit} className="auth-form">
         <input

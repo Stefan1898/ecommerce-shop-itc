@@ -8,15 +8,17 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
+import { ThemeContext } from "../ThemeContext"; // ⬅️ Nou!
 import { useTranslation } from "react-i18next";
-import "./Auth.css";
 import { User } from "lucide-react"; // Iconiță omuleț
+import "./Auth.css";
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
+  const { darkMode } = useContext(ThemeContext); // ⬅️ Obținem dark mode
   const { t } = useTranslation();
 
   const handleChange = (e) => {
@@ -70,7 +72,13 @@ function Login() {
   };
 
   return (
-    <div className="auth-container">
+    <div
+      className="auth-container"
+      style={{
+        backgroundColor: darkMode ? "#1e293b" : "#f7f9fc",
+        color: darkMode ? "#fff" : "#000",
+      }}
+    >
       <h2><User size={24} /> {t("login.title")}</h2>
 
       <form onSubmit={handleSubmit} className="auth-form">
