@@ -92,7 +92,7 @@ function Navbar({ onSearch, onCategoryChange }) {
     >
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "center" }}>
         <Link to="/" style={{ fontWeight: "bold", display: "flex", alignItems: "center", gap: "4px" }}>
-          <Home size={18} /> Acasă
+          <Home size={18} /> {t("home")}
         </Link>
         <Link to="/produse" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
           <Box size={18} /> {t("products")}
