@@ -51,6 +51,9 @@ const resources = {
         userDataNotFound:
           "Datele utilizatorului nu au fost găsite în Firestore",
       },
+      homepage: {
+        welcomeMessage: "🎉 Bine ai venit la IT&C Shop!",
+      },
     },
   },
   en: {
@@ -100,6 +103,9 @@ const resources = {
         login: "Login failed",
         userDataNotFound: "User data not found in Firestore",
       },
+      homepage: {
+        welcomeMessage: "🎉 Welcome to IT&C Shop!",
+      },
     },
   },
   fr: {
@@ -148,6 +154,9 @@ const resources = {
         register: "Erreur d'inscription",
         login: "Échec de la connexion",
         userDataNotFound: "Données utilisateur introuvables dans Firestore",
+      },
+      homepage: {
+        welcomeMessage: "🎉 Bienvenue chez IT&C Shop!",
       },
     },
   },

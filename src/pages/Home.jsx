@@ -5,9 +5,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./Home.css";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
 
 function Home() {
   const [carouselItems, setCarouselItems] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const loadFeaturedProducts = async () => {
@@ -15,10 +17,7 @@ function Home() {
         const snapshot = await getDocs(collection(db, "products"));
         const all = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         const featured = all.slice(0, 5); // primele 5 produse
-        console.log("🔍 Produse pentru carusel:", featured); // <- adăugat
         setCarouselItems(featured);
-        console.log("Produse extrase pentru carusel:", featured);
-
       } catch (error) {
         console.error("Eroare la încărcarea produselor pentru carusel:", error);
       }
@@ -29,7 +28,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      <h2 className="home-title">🎉 Bine ai venit la IT&C Shop!</h2>
+      <h2 className="home-title">🎉 {t("homepage.welcomeMessage")}</h2>
       <Carousel
         autoPlay
         infiniteLoop
