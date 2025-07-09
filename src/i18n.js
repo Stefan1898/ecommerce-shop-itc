@@ -27,6 +27,9 @@ const resources = {
         emailPlaceholder: "ex: email@exemplu.com",
         passwordPlaceholder: "Introdu parola",
         submit: "Autentifică-te",
+        google: "Autentificare cu Google",
+        noAccount: "Nu ai cont?",
+        registerNow: "Înregistrează-te acum",
       },
       register: {
         title: "Înregistrare",
@@ -37,12 +40,15 @@ const resources = {
         password: "Parolă",
         confirmPassword: "Confirmă parola",
         submit: "Creează cont",
+        google: "Înregistrare cu Google",
       },
       cart: {
         title: "Coșul tău de cumpărături",
         empty: "Coșul este gol.",
         remove: "Șterge",
         total: "Total",
+        paymentMethod: "Metoda de plată",
+        checkout: "Finalizare comandă",
       },
       error: {
         passwordsDontMatch: "Parolele nu coincid.",
@@ -80,6 +86,9 @@ const resources = {
         emailPlaceholder: "e.g. email@example.com",
         passwordPlaceholder: "Enter password",
         submit: "Login",
+        google: "Login with Google",
+        noAccount: "Don't have an account?",
+        registerNow: "Register now",
       },
       register: {
         title: "Register",
@@ -90,12 +99,15 @@ const resources = {
         password: "Password",
         confirmPassword: "Confirm Password",
         submit: "Create account",
+        google: "Sign up with Google",
       },
       cart: {
         title: "Your Shopping Cart",
         empty: "Your cart is empty.",
         remove: "Remove",
         total: "Total",
+        paymentMethod: "Payment method",
+        checkout: "Checkout",
       },
       error: {
         passwordsDontMatch: "Passwords do not match.",
@@ -132,6 +144,9 @@ const resources = {
         emailPlaceholder: "ex : email@exemple.com",
         passwordPlaceholder: "Entrez le mot de passe",
         submit: "Se connecter",
+        google: "Connexion avec Google",
+        noAccount: "Vous n'avez pas de compte ?",
+        registerNow: "Inscrivez-vous maintenant",
       },
       register: {
         title: "Inscription",
@@ -142,12 +157,15 @@ const resources = {
         password: "Mot de passe",
         confirmPassword: "Confirmer le mot de passe",
         submit: "Créer un compte",
+        google: "Inscription avec Google",
       },
       cart: {
         title: "Votre panier",
         empty: "Le panier est vide.",
         remove: "Supprimer",
         total: "Total",
+        paymentMethod: "Méthode de paiement",
+        checkout: "Passer la commande",
       },
       error: {
         passwordsDontMatch: "Les mots de passe ne correspondent pas.",
