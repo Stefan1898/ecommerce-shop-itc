@@ -7,6 +7,7 @@ import { ThemeContext } from "../ThemeContext";
 import { useTranslation } from "react-i18next";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { ShoppingCart, User } from "lucide-react"; // Iconițe
 
 const AdminEmail = "n_stefan18@yahoo.com";
 
@@ -91,12 +92,15 @@ function Navbar({ onSearch, onCategoryChange }) {
         boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
       }}
     >
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "center" }}>
         <Link to="/" style={{ fontWeight: "bold" }}>{t("welcome")}</Link>
         <Link to="/produse">{t("products")}</Link>
-        <Link to="/cos">{t("cart.title")}</Link>
+        <Link to="/cos" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <ShoppingCart size={18} />
+        </Link>
         {!user && <Link to="/register">{t("register.title")}</Link>}
-        {!user && <Link to="/login">{t("login.title")}</Link>}
+        {!user && <Link to="/login" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <User size={18} /> {t("login.title")}</Link>}
         {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
       </div>
 

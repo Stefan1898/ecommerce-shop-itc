@@ -4,7 +4,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -140,12 +140,17 @@ function Register() {
           className="google-btn"
           onClick={handleGoogleSignUp}
         >
-          🔐 {t("register.submit")} cu Google
+          <img
+            src="https://developers.google.com/identity/images/g-logo.png"
+            alt="Google icon"
+            style={{ width: "20px", marginRight: "8px" }}
+          />
+          {t("register.google")}
         </button>
       </form>
 
       <p style={{ marginTop: "1rem", textAlign: "center" }}>
-        {t("login.title")}? <Link to="/login">Autentifică-te</Link>
+        {t("register.haveAccount")} <Link to="/login">{t("login.title")}</Link>
       </p>
     </div>
   );

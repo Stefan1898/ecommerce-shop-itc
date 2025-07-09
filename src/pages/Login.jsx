@@ -1,12 +1,16 @@
 import React, { useState, useContext } from "react";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import { useTranslation } from "react-i18next";
 import "./Auth.css";
-import { User } from "lucide-react"; // pentru iconița de omuleț
+import { User } from "lucide-react"; // Iconiță omuleț
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -90,7 +94,12 @@ function Login() {
         <button type="submit">{t("login.submit")}</button>
 
         <button type="button" onClick={handleGoogleLogin} className="google-btn">
-          🔐 {t("login.google") || "Autentificare cu Google"}
+          <img
+            src="https://developers.google.com/identity/images/g-logo.png"
+            alt="Google icon"
+            style={{ width: "20px", marginRight: "8px" }}
+          />
+          {t("login.google")}
         </button>
       </form>
 

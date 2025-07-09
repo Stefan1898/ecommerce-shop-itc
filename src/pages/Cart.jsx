@@ -1,17 +1,14 @@
-// src/pages/Cart.jsx
-
 import React, { useContext, useState } from "react";
 import { CartContext } from "../CartContext";
 import { useTranslation } from "react-i18next";
 import "./Cart.css";
 
 function Cart() {
-  const { cartItems, removeFromCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, addToCart, decrementQuantity } = useContext(CartContext);
   const { t } = useTranslation();
 
   const [paymentMethod, setPaymentMethod] = useState("card");
 
-  // Grupare produse pe categorii
   const groupedItems = cartItems.reduce((acc, item) => {
     const category = item.category || "Fără categorie";
     if (!acc[category]) acc[category] = [];
@@ -19,7 +16,7 @@ function Cart() {
     return acc;
   }, {});
 
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleCheckout = () => {
     alert(
@@ -44,6 +41,11 @@ function Cart() {
                     <li key={index} className="cart-item">
                       <span>{item.name}</span>
                       <span>{item.price} RON</span>
+                      <div className="quantity-controls">
+                        <button onClick={() => decrementQuantity(item.id)}>-</button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => addToCart(item)}>+</button>
+                      </div>
                       <button onClick={() => removeFromCart(item.id)}>
                         {t("cart.remove")}
                       </button>
@@ -92,4 +94,3 @@ function Cart() {
 }
 
 export default Cart;
-
