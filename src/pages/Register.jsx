@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
-import { auth } from "../firebaseConfig";
-import { db } from "../firebaseConfig";
-import { useNavigate } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebaseConfig";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./Auth.css";
 
@@ -26,6 +29,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (form.password !== form.confirmPassword) {
       return setError(t("error.passwordsDontMatch"));
@@ -40,18 +44,39 @@ function Register() {
 
       const user = userCredential.user;
 
-      await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         email: form.email,
         fullName: form.fullName,
         address: form.address,
         phone: form.phone,
-        role: "user"
+        role: "user",
       });
 
       navigate("/login");
     } catch (err) {
       setError(t("error.register") + ": " + err.message);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        email: user.email,
+        fullName: user.displayName || "",
+        address: "",
+        phone: "",
+        role: "user",
+      });
+
+      navigate("/");
+    } catch (err) {
+      setError("Google sign-in failed: " + err.message);
     }
   };
 
@@ -107,8 +132,21 @@ function Register() {
           required
         />
         {error && <p className="auth-error">{error}</p>}
+
         <button type="submit">{t("register.submit")}</button>
+
+        <button
+          type="button"
+          className="google-btn"
+          onClick={handleGoogleSignUp}
+        >
+          🔐 {t("register.submit")} cu Google
+        </button>
       </form>
+
+      <p style={{ marginTop: "1rem", textAlign: "center" }}>
+        {t("login.title")}? <Link to="/login">Autentifică-te</Link>
+      </p>
     </div>
   );
 }
