@@ -59,8 +59,8 @@ function Navbar({ onSearch, onCategoryChange }) {
         return t("selectCategory");
       case "uncategorized":
         return t("noCategory");
-      case "plăci":
-        return t("categories.Plăci");
+      case "placi":
+        return t("categories.Placi");
       case "unitate pc":
         return t("categories.Unitate PC");
       case "laptop":
@@ -71,8 +71,8 @@ function Navbar({ onSearch, onCategoryChange }) {
         return t("categories.Telefon");
       case "smartwatch":
         return t("categories.Smartwatch");
-      case "tabletă":
-        return t("categories.Tabletă");
+      case "tableta":
+        return t("categories.Tableta");
       default:
         return cat;
     }

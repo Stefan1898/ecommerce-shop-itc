@@ -14,13 +14,13 @@ const resources = {
       selectCategory: "Toate categoriile",
       categories: {
         all: "Toate categoriile",
-        Plăci: "Plăci",
+        Placi: "Placi",
         "Unitate PC": "Unitate PC",
         Laptop: "Laptop",
         Monitor: "Monitor",
         Telefon: "Telefon",
         Smartwatch: "Smartwatch",
-        Tabletă: "Tabletă",
+        Tableta: "Tableta",
       },
       login: {
         title: "Autentificare",
@@ -64,13 +64,13 @@ const resources = {
       selectCategory: "All categories",
       categories: {
         all: "All categories",
-        Plăci: "Motherboards",
+        Placi: "Motherboards",
         "Unitate PC": "PC Unit",
         Laptop: "Laptop",
         Monitor: "Monitor",
         Telefon: "Phone",
         Smartwatch: "Smartwatch",
-        Tabletă: "Tablet",
+        Tableta: "Tablet",
       },
       login: {
         title: "Login",
@@ -113,13 +113,13 @@ const resources = {
       selectCategory: "Toutes les catégories",
       categories: {
         all: "Toutes les catégories",
-        Plăci: "Cartes mères",
+        Placi: "Cartes mères",
         "Unitate PC": "Unité centrale",
         Laptop: "Ordinateur portable",
         Monitor: "Moniteur",
         Telefon: "Téléphone",
         Smartwatch: "Montre connectée",
-        Tabletă: "Tablette",
+        Tableta: "Tablette",
       },
       login: {
         title: "Connexion",
