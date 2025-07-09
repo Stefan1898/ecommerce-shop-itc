@@ -52,30 +52,12 @@ function Navbar({ onSearch, onCategoryChange }) {
   const isProductPage = location.pathname.includes("produse");
 
   const getTranslatedCategory = (cat) => {
-    const normalized = cat.toLowerCase();
-
-    switch (normalized) {
-      case "all":
-        return t("selectCategory");
-      case "uncategorized":
-        return t("noCategory");
-      case "plăci":
-        return t("categories.Plăci");
-      case "unitate pc":
-        return t("categories.Unitate PC");
-      case "laptop":
-        return t("categories.Laptop");
-      case "monitor":
-        return t("categories.Monitor");
-      case "telefon":
-        return t("categories.Telefon");
-      case "smartwatch":
-        return t("categories.Smartwatch");
-      case "tabletă":
-        return t("categories.Tabletă");
-      default:
-        return cat;
-    }
+    if (cat === "all") return t("selectCategory");
+    if (cat.toLowerCase() === "uncategorized") return t("noCategory");
+    
+    // Evită prefixul vizibil „categories.” dacă nu există traducere
+    const translated = t(`categories.${cat}`, { defaultValue: cat });
+    return translated;
   };
 
   return (
