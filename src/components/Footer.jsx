@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import {
   FaFacebook,
   FaInstagram,
-  FaXTwitter,
+  FaTwitter, // ✅ înlocuit FaXTwitter cu FaTwitter
   FaLinkedin,
   FaTiktok,
-} from "react-icons/fa6";
+} from "react-icons/fa"; // ✅ fa în loc de fa6
 
 function Footer() {
   const { darkMode } = useContext(ThemeContext);
@@ -61,7 +61,7 @@ function Footer() {
         <div style={{ display: "flex", alignItems: "center" }}>
           <FaFacebook style={iconStyle} />
           <FaInstagram style={iconStyle} />
-          <FaXTwitter style={iconStyle} />
+          <FaTwitter style={iconStyle} />
           <FaLinkedin style={iconStyle} />
           <FaTiktok style={iconStyle} />
         </div>
@@ -71,3 +71,4 @@ function Footer() {
 }
 
 export default Footer;
+
