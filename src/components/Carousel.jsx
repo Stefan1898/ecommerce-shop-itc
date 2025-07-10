@@ -14,8 +14,8 @@ function Carousel() {
         const snapshot = await getDocs(collection(db, "products"));
         const products = snapshot.docs
           .map(doc => doc.data())
-          .filter(p => p.image) // doar produse cu imagine
-          .slice(0, 6) // primele 6 produse
+          .filter(p => p.image)
+          .slice(0, 6)
           .map(p => ({
             url: p.image,
             alt: p.name || "Produs"
@@ -33,15 +33,16 @@ function Carousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent(prev => (prev + 1) % images.length);
-    }, 3500);
+    }, 1500);
     return () => clearInterval(interval);
   }, [images]);
 
   if (images.length === 0) return null;
 
   return (
-    <div className="carousel">
+    <div className="carousel" style={{ position: "relative" }}>
       <img src={images[current].url} alt={images[current].alt} />
+      <div className="carousel-caption">{images[current].alt}</div>
     </div>
   );
 }
