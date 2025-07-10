@@ -10,6 +10,7 @@ import { CartProvider } from "./CartContext";
 import { ThemeProvider } from "./ThemeContext";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"; // ✅ Import Footer
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
@@ -25,7 +26,6 @@ function AdminRoute({ children }) {
 }
 
 function App() {
-  // 🟡 NOU: stări pentru filtrare produse
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -61,6 +61,7 @@ function App() {
                 }
               />
             </Routes>
+            <Footer /> {/* ✅ Footer adăugat aici */}
           </Router>
         </ThemeProvider>
       </CartProvider>

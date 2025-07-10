@@ -68,6 +68,16 @@ const resources = {
       homepage: {
         welcomeMessage: "🎉 Bine ai venit la IT&C Shop!",
       },
+      footer: {
+        contact: "Contact",
+        phone: "Telefon fix",
+        mobile: "Telefon mobil",
+        email: "Email",
+        onlineStore: "Magazin Online",
+        aboutUs: "Despre noi",
+        terms: "Termeni și condiții",
+        socialMedia: "Urmărește-ne pe:",
+      },
     },
   },
   en: {
@@ -134,6 +144,16 @@ const resources = {
       homepage: {
         welcomeMessage: "🎉 Welcome to IT&C Shop!",
       },
+      footer: {
+        contact: "Contact",
+        phone: "Phone (landline)",
+        mobile: "Mobile phone",
+        email: "Email",
+        onlineStore: "Online Store",
+        aboutUs: "About Us",
+        terms: "Terms and Conditions",
+        socialMedia: "Follow us on:",
+      },
     },
   },
   fr: {
@@ -199,6 +219,16 @@ const resources = {
       },
       homepage: {
         welcomeMessage: "🎉 Bienvenue chez IT&C Shop!",
+      },
+      footer: {
+        contact: "Contact",
+        phone: "Téléphone fixe",
+        mobile: "Téléphone portable",
+        email: "Email",
+        onlineStore: "Boutique en ligne",
+        aboutUs: "À propos de nous",
+        terms: "Termes et conditions",
+        socialMedia: "Suivez-nous sur :",
       },
     },
   },
