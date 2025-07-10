@@ -13,6 +13,9 @@ const resources = {
       noCategory: "Fără categorie",
       searchPlaceholder: "Caută produse...",
       selectCategory: "Toate categoriile",
+      navbar: {
+        cart: "Coș",
+      },
       categories: {
         all: "Toate categoriile",
         Placi: "Placi",
@@ -51,6 +54,10 @@ const resources = {
         total: "Total",
         paymentMethod: "Metoda de plată",
         checkout: "Finalizare comandă",
+        payment: {
+          card: "Card (VISA / Mastercard)",
+          cash: "Ramburs la curier",
+        },
       },
       error: {
         passwordsDontMatch: "Parolele nu coincid.",
@@ -74,6 +81,9 @@ const resources = {
       noCategory: "Uncategorized",
       searchPlaceholder: "Search products...",
       selectCategory: "All categories",
+      navbar: {
+        cart: "Cart",
+      },
       categories: {
         all: "All categories",
         Placi: "Motherboards",
@@ -112,6 +122,10 @@ const resources = {
         total: "Total",
         paymentMethod: "Payment method",
         checkout: "Checkout",
+        payment: {
+          card: "Card (VISA / Mastercard)",
+          cash: "Cash on delivery",
+        },
       },
       error: {
         passwordsDontMatch: "Passwords do not match.",
@@ -134,6 +148,9 @@ const resources = {
       noCategory: "Sans catégorie",
       searchPlaceholder: "Rechercher des produits...",
       selectCategory: "Toutes les catégories",
+      navbar: {
+        cart: "Panier",
+      },
       categories: {
         all: "Toutes les catégories",
         Placi: "Cartes mères",
@@ -172,6 +189,10 @@ const resources = {
         total: "Total",
         paymentMethod: "Méthode de paiement",
         checkout: "Passer la commande",
+        payment: {
+          card: "Carte (VISA / Mastercard)",
+          cash: "Paiement à la livraison",
+        },
       },
       error: {
         passwordsDontMatch: "Les mots de passe ne correspondent pas.",
