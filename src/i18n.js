@@ -13,9 +13,6 @@ const resources = {
       noCategory: "Fără categorie",
       searchPlaceholder: "Caută produse...",
       selectCategory: "Toate categoriile",
-      navbar: {
-        cart: "Coș",
-      },
       categories: {
         all: "Toate categoriile",
         Placi: "Placi",
@@ -49,12 +46,14 @@ const resources = {
       },
       cart: {
         title: "Coșul tău de cumpărături",
+        short: "Coș",
         empty: "Coșul este gol.",
         remove: "Șterge",
         total: "Total",
         paymentMethod: "Metoda de plată",
         checkout: "Finalizare comandă",
-        payment: {
+        orderPlaced: "Comanda a fost plasată cu metoda de plată:",
+        paymentMethods: {
           card: "Card (VISA / Mastercard)",
           cash: "Ramburs la curier",
         },
@@ -81,9 +80,6 @@ const resources = {
       noCategory: "Uncategorized",
       searchPlaceholder: "Search products...",
       selectCategory: "All categories",
-      navbar: {
-        cart: "Cart",
-      },
       categories: {
         all: "All categories",
         Placi: "Motherboards",
@@ -117,12 +113,14 @@ const resources = {
       },
       cart: {
         title: "Your Shopping Cart",
+        short: "Cart",
         empty: "Your cart is empty.",
         remove: "Remove",
         total: "Total",
         paymentMethod: "Payment method",
         checkout: "Checkout",
-        payment: {
+        orderPlaced: "Order placed with payment method:",
+        paymentMethods: {
           card: "Card (VISA / Mastercard)",
           cash: "Cash on delivery",
         },
@@ -148,9 +146,6 @@ const resources = {
       noCategory: "Sans catégorie",
       searchPlaceholder: "Rechercher des produits...",
       selectCategory: "Toutes les catégories",
-      navbar: {
-        cart: "Panier",
-      },
       categories: {
         all: "Toutes les catégories",
         Placi: "Cartes mères",
@@ -184,12 +179,14 @@ const resources = {
       },
       cart: {
         title: "Votre panier",
+        short: "Panier",
         empty: "Le panier est vide.",
         remove: "Supprimer",
         total: "Total",
         paymentMethod: "Méthode de paiement",
         checkout: "Passer la commande",
-        payment: {
+        orderPlaced: "Commande passée avec la méthode de paiement :",
+        paymentMethods: {
           card: "Carte (VISA / Mastercard)",
           cash: "Paiement à la livraison",
         },

@@ -10,7 +10,7 @@ function Cart() {
   const [paymentMethod, setPaymentMethod] = useState("card");
 
   const groupedItems = cartItems.reduce((acc, item) => {
-    const category = item.category || "Fără categorie";
+    const category = item.category || t("noCategory");
     if (!acc[category]) acc[category] = [];
     acc[category].push(item);
     return acc;
@@ -20,7 +20,7 @@ function Cart() {
 
   const handleCheckout = () => {
     alert(
-      `Comanda a fost plasată cu metoda de plată: ${paymentMethod.toUpperCase()}.\nTotal: ${total} RON`
+      `${t("cart.orderPlaced")} ${t(`cart.paymentMethods.${paymentMethod}`)}.\n${t("cart.total")}: ${total} RON`
     );
   };
 
@@ -68,8 +68,8 @@ function Cart() {
               onChange={(e) => setPaymentMethod(e.target.value)}
               style={{ padding: "6px", marginLeft: "8px" }}
             >
-              <option value="card">Card (VISA / Mastercard)</option>
-              <option value="cash">Ramburs la curier</option>
+              <option value="card">{t("cart.paymentMethods.card")}</option>
+              <option value="cash">{t("cart.paymentMethods.cash")}</option>
             </select>
           </div>
 

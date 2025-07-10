@@ -5,7 +5,7 @@ import { ThemeContext } from "../ThemeContext";
 import { useTranslation } from "react-i18next";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
-import { ShoppingCart, User, Home, Box } from "lucide-react"; // iconițe
+import { ShoppingCart, User, Home, Box } from "lucide-react";
 
 const AdminEmail = "n_stefan18@yahoo.com";
 
@@ -98,7 +98,7 @@ function Navbar({ onSearch, onCategoryChange }) {
           <Box size={18} /> {t("products")}
         </Link>
         <Link to="/cos" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <ShoppingCart size={18} /> Coș
+          <ShoppingCart size={18} /> {t("cart.short")}
         </Link>
         {!user && (
           <Link to="/login" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
