@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { ShoppingCart, User, Home, Box } from "lucide-react";
+import logo from "../assets/logo-itc.jpg"; // ✅ import logo
 
 const AdminEmail = "n_stefan18@yahoo.com";
 
@@ -52,28 +53,17 @@ function Navbar({ onSearch, onCategoryChange }) {
 
   const getTranslatedCategory = (cat) => {
     const normalized = cat.toLowerCase();
-
     switch (normalized) {
-      case "all":
-        return t("selectCategory");
-      case "uncategorized":
-        return t("noCategory");
-      case "placi":
-        return t("categories.Placi");
-      case "unitate pc":
-        return t("categories.Unitate PC");
-      case "laptop":
-        return t("categories.Laptop");
-      case "monitor":
-        return t("categories.Monitor");
-      case "telefon":
-        return t("categories.Telefon");
-      case "smartwatch":
-        return t("categories.Smartwatch");
-      case "tableta":
-        return t("categories.Tableta");
-      default:
-        return cat;
+      case "all": return t("selectCategory");
+      case "uncategorized": return t("noCategory");
+      case "placi": return t("categories.Placi");
+      case "unitate pc": return t("categories.Unitate PC");
+      case "laptop": return t("categories.Laptop");
+      case "monitor": return t("categories.Monitor");
+      case "telefon": return t("categories.Telefon");
+      case "smartwatch": return t("categories.Smartwatch");
+      case "tableta": return t("categories.Tableta");
+      default: return cat;
     }
   };
 
@@ -90,24 +80,31 @@ function Navbar({ onSearch, onCategoryChange }) {
         boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
       }}
     >
+      {/* Logo și navigare principală */}
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "center" }}>
-        <Link to="/" style={{ fontWeight: "bold", display: "flex", alignItems: "center", gap: "4px" }}>
-          <Home size={18} /> {t("home")}
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
+          <img src={logo} alt="Logo IT&C" style={{ height: "40px", borderRadius: "6px" }} />
+          <span style={{ fontWeight: "bold", color: darkMode ? "#fff" : "#111" }}>{t("home")}</span>
         </Link>
+
         <Link to="/produse" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
           <Box size={18} /> {t("products")}
         </Link>
+
         <Link to="/cos" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
           <ShoppingCart size={18} /> {t("cart.short")}
         </Link>
+
         {!user && (
           <Link to="/login" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
             <User size={18} /> {t("login.title")}
           </Link>
         )}
+
         {user?.email === AdminEmail && <Link to="/admin">Admin</Link>}
       </div>
 
+      {/* Search și filtrare */}
       {isProductPage && (
         <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
           <input
@@ -132,6 +129,7 @@ function Navbar({ onSearch, onCategoryChange }) {
         </div>
       )}
 
+      {/* Dreapta: limbă, temă, user */}
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <select onChange={(e) => changeLanguage(e.target.value)} defaultValue={i18n.language}>
           <option value="ro">RO</option>

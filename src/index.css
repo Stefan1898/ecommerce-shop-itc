@@ -13,28 +13,57 @@ body.dark-mode {
   color: #f9fafb;
 }
 
+/* Antete */
 h1,
 h2,
 h3 {
   margin: 0.5rem 0;
 }
 
+/* Link-uri */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+body.dark-mode a {
+  color: #93c5fd;
+}
+
+/* Butoane */
 button {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Optional: Dark mode pentru butoane */
 body.dark-mode button {
   background-color: #1f2937;
   color: #f9fafb;
 }
 
-body.dark-mode a {
-  color: #93c5fd;
+/* Imagini */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Logo în navbar */
+.navbar-logo {
+  height: 40px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* Select dropdown */
+select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+body.dark-mode select {
+  background-color: #1f2937;
+  color: #f9fafb;
+  border: 1px solid #374151;
 }
